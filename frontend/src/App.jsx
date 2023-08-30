@@ -1,8 +1,13 @@
 import React from 'react'
+import ProductList from './features/products/ProductList'
+
 
 const App = () => {
   return (
-    <div className='text-orange-500 text-8xl'>Hello</div>
+    <>
+      <ProductList/>
+    </>
+
   )
 }
 
