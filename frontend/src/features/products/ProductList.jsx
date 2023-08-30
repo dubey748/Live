@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { increment, incrementAsync, selectCount } from "./productSlice";
+import Pagination from "../pagination/Pagination"
 
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -19,13 +20,7 @@ const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
   { name: "Price: High to Low", href: "#", current: false },
 ];
-const subCategories = [
-  { name: "Totes", href: "#" },
-  { name: "Backpacks", href: "#" },
-  { name: "Travel Bags", href: "#" },
-  { name: "Hip Bags", href: "#" },
-  { name: "Laptop Sleeves", href: "#" },
-];
+
 const filters = [
   {
     id: "color",
@@ -93,7 +88,7 @@ export default function ProductList() {
       color: "Black",
     },
     {
-      id: 1,
+      id: 2,
       name: "Basic Tee",
       href: "#",
       imageSrc:
@@ -103,7 +98,7 @@ export default function ProductList() {
       color: "Black",
     },
     {
-      id: 1,
+      id: 3,
       name: "Basic Tee",
       href: "#",
       imageSrc:
@@ -165,19 +160,7 @@ export default function ProductList() {
 
                     {/* Filters */}
                     <form className="mt-4 border-t border-gray-200">
-                      <h3 className="sr-only">Categories</h3>
-                      <ul
-                        role="list"
-                        className="px-2 py-3 font-medium text-gray-900"
-                      >
-                        {subCategories.map((category) => (
-                          <li key={category.name}>
-                            <a href={category.href} className="block px-2 py-3">
-                              {category.name}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                     
 
                       {filters.map((section) => (
                         <Disclosure
@@ -246,7 +229,7 @@ export default function ProductList() {
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-                New Arrivals
+                Let's Explore 
               </h1>
 
               <div className="flex items-center">
@@ -321,18 +304,7 @@ export default function ProductList() {
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 {/* Filters */}
                 <form className="hidden lg:block">
-                  <h3 className="sr-only">Categories</h3>
-                  <ul
-                    role="list"
-                    className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
-                  >
-                    {subCategories.map((category) => (
-                      <li key={category.name}>
-                        <a href={category.href}>{category.name}</a>
-                      </li>
-                    ))}
-                  </ul>
-
+                 
                   {filters.map((section) => (
                     <Disclosure
                       as="div"
@@ -395,10 +367,7 @@ export default function ProductList() {
                 {/* Product grid */}
                 <div className="lg:col-span-3">
                   <div className="bg-white">
-                    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                      <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                        Products
-                      </h2>
+                    <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
 
                       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         {products.map((product) => (
@@ -437,6 +406,7 @@ export default function ProductList() {
                 </div>
               </div>
             </section>
+            <Pagination/>
           </main>
         </div>
       </div>
