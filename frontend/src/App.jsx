@@ -4,6 +4,8 @@ import Loginpage from "./pages/Loginpage";
 import Signuppage from "./pages/Signuppage";
 import Cartpage from "./pages/CartPage"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CheckoutPage from "./pages/CheckoutPage";
+
 
 const App = () => {
   return (
@@ -13,6 +15,7 @@ const App = () => {
         <Route path="/signup" element={<Signuppage />} />
         <Route path="/signin" element={<Loginpage />} />
         <Route path="/cart" element={<Cartpage />} />
+        <Route path="/checkout" element={<CheckoutPage/>} />
       </Routes>
     </BrowserRouter>
   );
