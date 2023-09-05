@@ -6,20 +6,21 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
+  name: "Example",
+  email: "Ex@example.com",
   imageUrl: "https://aabhishekdubey.onrender.com/assets/logo-13b1c4c4.svg",
 };
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
+  { name: "Dashboard", to: "/", current: true },
+  { name: "Team", to: "/", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Your Profile", to: "/signin" },
+  { name: "Settings", to: "/" },
+  { name: "Sign out", to: "/" },
 ];
 
 function classNames(...classes) {
@@ -47,7 +48,7 @@ const Navbar = ({ children }) => {
                         {navigation.map((item) => (
                           <a
                             key={item.name}
-                            href={item.href}
+                            href={item.to}
                             className={classNames(
                               item.current
                                 ? "bg-gray-900 text-white"
@@ -69,7 +70,7 @@ const Navbar = ({ children }) => {
                         className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="absolute -inset-1.5" />
-                       
+
                         <ShoppingCartIcon
                           className="h-6 w-6"
                           aria-hidden="true"
@@ -106,7 +107,7 @@ const Navbar = ({ children }) => {
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <a
-                                    href={item.href}
+                                    href={item.to}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
@@ -149,7 +150,7 @@ const Navbar = ({ children }) => {
                     <Disclosure.Button
                       key={item.name}
                       as="a"
-                      href={item.href}
+                      href={item.to}
                       className={classNames(
                         item.current
                           ? "bg-gray-900 text-white"
@@ -184,7 +185,7 @@ const Navbar = ({ children }) => {
                       className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       <span className="absolute -inset-1.5" />
-                      
+
                       <ShoppingCartIcon
                         className="h-6 w-6"
                         aria-hidden="true"
@@ -199,7 +200,7 @@ const Navbar = ({ children }) => {
                       <Disclosure.Button
                         key={item.name}
                         as="a"
-                        href={item.href}
+                        href={item.to}
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
                         {item.name}
