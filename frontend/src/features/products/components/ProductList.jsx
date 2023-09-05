@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increment, incrementAsync, selectCount } from "./productSlice";
-import Pagination from "../pagination/Pagination"
+import { increment, incrementAsync, selectCount } from "../productSlice";
+import Pagination from "../../pagination/Pagination";
 
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -160,8 +160,6 @@ export default function ProductList() {
 
                     {/* Filters */}
                     <form className="mt-4 border-t border-gray-200">
-                     
-
                       {filters.map((section) => (
                         <Disclosure
                           as="div"
@@ -229,7 +227,7 @@ export default function ProductList() {
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-                Let's Explore 
+                Let's Explore
               </h1>
 
               <div className="flex items-center">
@@ -304,7 +302,6 @@ export default function ProductList() {
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 {/* Filters */}
                 <form className="hidden lg:block">
-                 
                   {filters.map((section) => (
                     <Disclosure
                       as="div"
@@ -368,7 +365,6 @@ export default function ProductList() {
                 <div className="lg:col-span-3">
                   <div className="bg-white">
                     <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
-
                       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         {products.map((product) => (
                           <div key={product.id} className="group relative">
@@ -406,7 +402,7 @@ export default function ProductList() {
                 </div>
               </div>
             </section>
-            <Pagination/>
+            <Pagination />
           </main>
         </div>
       </div>
