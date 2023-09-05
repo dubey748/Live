@@ -66,8 +66,8 @@ const CheckoutPage = () => {
                 <h2 className="text-2xl font-semibold leading-7 text-gray-900">
                   Personal Information
                 </h2>
-                <p className="mt-1 text-sm leading-6 text-gray-600">
-                  Use a permanent address where you can receive mail.
+                <p className="mt-1 text-sm leading-6 text-gray-800">
+                To proceed, kindly furnish us with your address, phone number, mailing address, and payment information.
                 </p>
 
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
