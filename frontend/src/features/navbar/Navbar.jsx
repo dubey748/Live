@@ -6,20 +6,21 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
+  name: "Example",
+  email: "Ex@example.com",
   imageUrl: "https://aabhishekdubey.onrender.com/assets/logo-13b1c4c4.svg",
 };
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
+  { name: "Dashboard", to: "/", current: true },
+  { name: "Team", to: "/", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Your Profile", to: "/signin" },
+  { name: "Settings", to: "/" },
+  { name: "Sign out", to: "/" },
 ];
 
 function classNames(...classes) {
@@ -27,8 +28,8 @@ function classNames(...classes) {
 }
 const Navbar = ({ children }) => {
   return (
-    <>
-      <div className="min-h-full">
+    <div>
+      <div className=" min-h-full ">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
@@ -45,9 +46,9 @@ const Navbar = ({ children }) => {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
-                            href={item.href}
+                            to={item.to} // Use the "to" prop to specify the destination route
                             className={classNames(
                               item.current
                                 ? "bg-gray-900 text-white"
@@ -57,24 +58,27 @@ const Navbar = ({ children }) => {
                             aria-current={item.current ? "page" : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button
-                        type="button"
-                        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                      >
-                        <span className="absolute -inset-1.5" />
-                       
-                        <ShoppingCartIcon
-                          className="h-6 w-6"
-                          aria-hidden="true"
-                        />
-                      </button>
+                      <Link to="/cart">
+                        <button
+                          type="button"
+                          className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        >
+                          <span className="absolute -inset-1.5" />
+
+                          <ShoppingCartIcon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                          />
+                        </button>
+                      </Link>
+
                       <span className="inline-flex items-center rounded-md mb-7  bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                         0
                       </span>
@@ -105,15 +109,15 @@ const Navbar = ({ children }) => {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
+                                  <Link
+                                    to={item.to}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -149,7 +153,7 @@ const Navbar = ({ children }) => {
                     <Disclosure.Button
                       key={item.name}
                       as="a"
-                      href={item.href}
+                      href={item.to}
                       className={classNames(
                         item.current
                           ? "bg-gray-900 text-white"
@@ -179,31 +183,32 @@ const Navbar = ({ children }) => {
                         {user.email}
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    >
-                      <span className="absolute -inset-1.5" />
-                      
-                      <ShoppingCartIcon
-                        className="h-6 w-6"
-                        aria-hidden="true"
-                      />
-                    </button>
+                    <Link to="/cart">
+                      <button
+                        type="button"
+                        className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span className="absolute -inset-1.5" />
+
+                        <ShoppingCartIcon
+                          className="h-6 w-6"
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </Link>
                     <span className="inline-flex items-center rounded-md mb-7 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                       0
                     </span>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
-                      <Disclosure.Button
+                      <Link
                         key={item.name}
-                        as="a"
-                        href={item.href}
+                        to={item.to}
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
                         {item.name}
-                      </Disclosure.Button>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -225,7 +230,7 @@ const Navbar = ({ children }) => {
           </div>
         </main>
       </div>
-    </>
+    </div>
   );
 };
 
