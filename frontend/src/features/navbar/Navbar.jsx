@@ -37,22 +37,20 @@ const Navbar = ({ children }) => {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <img
-                        className="h-8 w-8"
-                        src="https://aabhishekdubey.onrender.com/assets/logo-13b1c4c4.svg"
-                        alt="Live"
-                      />
+                      <Link to="/">
+                        <img
+                          className="h-8 w-8"
+                          src="https://aabhishekdubey.onrender.com/assets/logo-13b1c4c4.svg"
+                          alt="Live"
+                        />
+                      </Link>
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
                           <Link
                             key={item.name}
-
-
                             to={item.to} // Use the "to" prop to specify the destination route
-
-
                             className={classNames(
                               item.current
                                 ? "bg-gray-900 text-white"
@@ -69,7 +67,6 @@ const Navbar = ({ children }) => {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-
                       <Link to="/cart">
                         <button
                           type="button"
@@ -83,7 +80,6 @@ const Navbar = ({ children }) => {
                           />
                         </button>
                       </Link>
-
 
                       <span className="inline-flex items-center rounded-md mb-7  bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                         0
@@ -115,12 +111,8 @@ const Navbar = ({ children }) => {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-
-
                                   <Link
                                     to={item.to}
-
-
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
@@ -216,11 +208,7 @@ const Navbar = ({ children }) => {
                     {userNavigation.map((item) => (
                       <Link
                         key={item.name}
-
-
                         to={item.to}
-
-
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
                         {item.name}
