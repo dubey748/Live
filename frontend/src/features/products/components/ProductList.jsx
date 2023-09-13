@@ -1,6 +1,10 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllProductsAsync, selectAllProducts } from "../productSlice";
+import {
+  fetchAllProductsAsync,
+  selectAllProducts,
+  fetchProductsByFiltersAsync,
+} from "../productSlice";
 import Pagination from "../../pagination/Pagination";
 import { Link } from "react-router-dom";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
@@ -194,10 +198,14 @@ function classNames(...classes) {
 export default function ProductList() {
   const products = useSelector(selectAllProducts);
   const dispatch = useDispatch();
+  const [filter, setFilter] = useState({});
 
-  const handleFilter=(e,section,option)=>{
-    console.log(section.id,option.value)
-  }
+  const handleFilter = (e, section, option) => {
+    const newFilter = { ...filter, [section.id]: option.value };
+    setFilter(newFilter);
+
+    dispatch(fetchProductsByFiltersAsync(newFilter));
+  };
 
   useEffect(() => {
     dispatch(fetchAllProductsAsync());
