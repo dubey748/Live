@@ -108,10 +108,26 @@ Once your changes are approved, they will be merged into the main project.
 
 **Development Scripts**
 
-**yarn run dev:** Start the development server. 
-**yarn build:** Build the production-ready application. 
-**yarn lint:** Lint your code using ESLint. 
-**yarn preview:** Preview the production build locally.
+**yarn run dev:**
+
+Start the development server. 
+
+
+**yarn build:**
+
+Build the production-ready application. 
+
+
+**yarn lint:** 
+
+Lint your code using ESLint. 
+
+
+**yarn preview:** 
+
+Preview the production build locally.
+
+
 
 Get in Touch If you have any questions, ideas, or need assistance, please don't hesitate to open an issue or reach out to us through the project's communication channels.
 
