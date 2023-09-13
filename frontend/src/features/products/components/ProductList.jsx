@@ -19,11 +19,9 @@ import {
 } from "@heroicons/react/20/solid";
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { name: "Best Rating", sort:"rating", order:"desc", current: false },
+  { name: "Price: Low to High", sort:"price", order:"asc", current: false },
+  { name: "Price: High to Low", sort:"price", order:"desc", current: false },
 ];
 
 const filters = [
@@ -207,6 +205,13 @@ export default function ProductList() {
     dispatch(fetchProductsByFiltersAsync(newFilter));
   };
 
+  const handleSort=(e,option)=>{
+    const newFilter = { ...filter, _sort:option.sort,  _order:option.order };
+    setFilter(newFilter);
+
+    dispatch(fetchProductsByFiltersAsync(newFilter));
+  }
+
   useEffect(() => {
     dispatch(fetchAllProductsAsync());
   }, [dispatch]);
@@ -361,8 +366,8 @@ export default function ProductList() {
                         {sortOptions.map((option) => (
                           <Menu.Item key={option.name}>
                             {({ active }) => (
-                              <a
-                                href={option.href}
+                              <p
+                               onClick={(e)=>handleSort(e,option)}
                                 className={classNames(
                                   option.current
                                     ? "font-medium text-gray-900"
@@ -372,7 +377,7 @@ export default function ProductList() {
                                 )}
                               >
                                 {option.name}
-                              </a>
+                              </p>
                             )}
                           </Menu.Item>
                         ))}
