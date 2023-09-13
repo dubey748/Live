@@ -195,13 +195,10 @@ export default function ProductList() {
   const products = useSelector(selectAllProducts);
   const dispatch = useDispatch();
 
-  const handleFilter = (e, section, option) => {
-   
-    console.log("HandleFilter called");
-    console.log("Section:", section.id);
-    console.log("Option:", option.value);
-    console.log("Checked:", isChecked);
-  };
+  const handleFilter=(e,section,option)=>{
+    console.log(section.id,option.value)
+  }
+
   useEffect(() => {
     dispatch(fetchAllProductsAsync());
   }, [dispatch]);
@@ -298,8 +295,7 @@ export default function ProductList() {
                                         defaultValue={option.value}
                                         type="checkbox"
                                         defaultChecked={option.checked}
-                                        onClick={(e) => 
-                                        
+                                        onChange={(e) =>
                                           handleFilter(e, section, option)
                                         }
                                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
@@ -444,6 +440,9 @@ export default function ProductList() {
                                     defaultValue={option.value}
                                     type="checkbox"
                                     defaultChecked={option.checked}
+                                    onChange={(e) =>
+                                      handleFilter(e, section, option)
+                                    }
                                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   />
                                   <label
