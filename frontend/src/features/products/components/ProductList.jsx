@@ -199,6 +199,7 @@ export default function ProductList() {
   const [filter, setFilter] = useState({});
 
   const handleFilter = (e, section, option) => {
+  
     const newFilter = { ...filter, [section.id]: option.value };
     setFilter(newFilter);
 
