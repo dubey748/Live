@@ -307,7 +307,7 @@ export default function ProductList() {
 
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 {/* Filters */}
-                <DesktopFilter />
+                <DesktopFilter handleFilter={handleFilter} />
 
                 {/* Product grid */}
                 <ProductGrid handleFilter={handleFilter} products={products} />
