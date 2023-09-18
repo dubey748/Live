@@ -197,24 +197,39 @@ export default function ProductList() {
   const products = useSelector(selectAllProducts);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({});
+  const [sort, setSort] = useState({});
 
   const handleFilter = (e, section, option) => {
-    const newFilter = { ...filter, [section.id]: option.value };
-    setFilter(newFilter);
+    
+    const newFilter = { ...filter };
+    // TODO : on server it will support multiple categories
+    if (e.target.checked) {
+      if (newFilter[section.id]) {
+        newFilter[section.id].push(option.value);
+      } else {
+        newFilter[section.id] = [option.value];
+      }
+    } else {
+      const index = newFilter[section.id].findIndex(
+        (el) => el === option.value
+      );
+      newFilter[section.id].splice(index, 1);
+    }
+   
 
-    dispatch(fetchProductsByFiltersAsync(newFilter));
+    setFilter(newFilter);
   };
 
   const handleSort = (e, option) => {
-    const newFilter = { ...filter, _sort: option.sort, _order: option.order };
-    setFilter(newFilter);
-
-    dispatch(fetchProductsByFiltersAsync(newFilter));
+    const sort = { _sort: option.sort, _order: option.order };
+    
+    setSort(sort);
   };
 
   useEffect(() => {
-    dispatch(fetchAllProductsAsync());
-  }, [dispatch]);
+    dispatch(fetchProductsByFiltersAsync({ filter, sort }));
+  }, [dispatch, filter, sort]);
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   return (
@@ -229,9 +244,7 @@ export default function ProductList() {
           />
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
             <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-5 gap-[30px]">
-
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">
                 Let's Explore
               </h1>
