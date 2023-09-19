@@ -1,9 +1,9 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  fetchAllProductsAsync,
   selectAllProducts,
   fetchProductsByFiltersAsync,
+  selectTotalItems,
 } from "../productSlice";
 import Pagination from "../../pagination/Pagination";
 import { Link } from "react-router-dom";
@@ -17,6 +17,7 @@ import {
   Squares2X2Icon,
   StarIcon,
 } from "@heroicons/react/20/solid";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -195,12 +196,13 @@ function classNames(...classes) {
 
 export default function ProductList() {
   const products = useSelector(selectAllProducts);
+  const totalItems=useSelector(selectTotalItems)
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
+  const [page, setPage] = useState(1);
 
   const handleFilter = (e, section, option) => {
-    
     const newFilter = { ...filter };
     // TODO : on server it will support multiple categories
     if (e.target.checked) {
@@ -215,20 +217,29 @@ export default function ProductList() {
       );
       newFilter[section.id].splice(index, 1);
     }
-   
 
     setFilter(newFilter);
   };
 
   const handleSort = (e, option) => {
     const sort = { _sort: option.sort, _order: option.order };
-    
+
     setSort(sort);
   };
 
+  const handlePage=(page)=>{
+    
+    setPage(page)
+  }
+
   useEffect(() => {
-    dispatch(fetchProductsByFiltersAsync({ filter, sort }));
-  }, [dispatch, filter, sort]);
+    const pagination = {_page: page, _limit: ITEMS_PER_PAGE}
+    dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
+  }, [dispatch, filter, sort, page]);
+
+  useEffect(()=>{
+    setPage(1)
+  },[totalItems, sort])
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
@@ -327,7 +338,7 @@ export default function ProductList() {
               </div>
             </section>
             {/* Pagination */}
-            <Pagination />
+            <Pagination handlePage={handlePage} page={page} setPage={setPage} totalItems={totalItems}/>
           </main>
         </div>
       </div>
