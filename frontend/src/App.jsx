@@ -10,7 +10,7 @@ import { HashRouter } from "react-router-dom";
 
 const App = () => {
   return (
-    <HashRouter>
+    <BrowserRouter basename="/Home">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signuppage />} />
@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
