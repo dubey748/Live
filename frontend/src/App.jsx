@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/signin" element={<Loginpage />} />
         <Route path="/cart" element={<Cartpage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/product-details" element={<ProductDetailsPage />} />
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
       </Routes>
     </HashRouter>
   );
