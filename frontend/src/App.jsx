@@ -10,14 +10,16 @@ import { HashRouter } from "react-router-dom";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signuppage />} />
         <Route path="/signin" element={<Loginpage />} />
         <Route path="/cart" element={<Cartpage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/product-details" element={<ProductDetailsPage />} />
+
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
+
       </Routes>
     </BrowserRouter>
   );
