@@ -30,7 +30,7 @@ const Navbar = ({ children }) => {
   return (
     <div>
       <div className=" min-h-full ">
-        <Disclosure as="nav" className="bg-gray-800">
+        <Disclosure as="nav" className="bg-gray-800 fixed top-0 right-0 left-0">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -224,7 +224,7 @@ const Navbar = ({ children }) => {
           )}
         </Disclosure>
 
-        <header className="bg-white shadow">
+        <header className="bg-white shadow mt-16">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               Live
